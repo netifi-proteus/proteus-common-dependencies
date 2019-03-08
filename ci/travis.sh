@@ -13,11 +13,11 @@ if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
 elif [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "develop" ] && [ "$TRAVIS_TAG" == "" ]; then
     # Develop Branch
     echo -e 'Build Branch with Snapshot => Branch ['$TRAVIS_BRANCH']'
-    ./mvnw clean install publish -Drevision-prefix=BUILD-SNAPSHOT
+    ./mvnw clean install artifactory:publish -Drevision-prefix=BUILD-SNAPSHOT
 elif [ "$TRAVIS_PULL_REQUEST" == "false" ] && [[ "$TRAVIS_BRANCH" == release/* ]] && [ "$TRAVIS_TAG" == "" ]; then
     # Release Branch
     echo -e 'Build Branch for Release => Branch ['$TRAVIS_BRANCH']'
-    ./mvnw clean install publish -Drevision-prefix=RC
+    ./mvnw clean install artifactory:publish -Drevision-prefix=RC
 elif [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
     # Master Branch
     echo -e 'Build Master for Release => Branch ['$TRAVIS_BRANCH']'
@@ -25,9 +25,9 @@ elif [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; 
 elif [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ]; then
     # Tag
     echo -e 'Build Tag for Release => Tag ['$TRAVIS_TAG']'
-    ./mvnw clean install publish -Drevision-prefix=RELEASE
+    ./mvnw clean install artifactory:publish -Drevision-prefix=RELEASE
 else
     # Feature Branch
     echo -e 'Build Branch => Branch ['$TRAVIS_BRANCH']'
-    ./mvnw clean install publish -Drevision-prefix=BUILD-SNAPSHOT
+    ./mvnw clean install artifactory:publish -Drevision-prefix=BUILD-SNAPSHOT
 fi
