@@ -27,7 +27,6 @@ elif [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; 
 elif [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ]; then
     # Tag
     echo -e 'Build Tag for Release => Tag ['$TRAVIS_TAG']'
-    export ORG_GRADLE_PROJECT_releaseType=release
     ./mvnw
 else
     # Feature Branch
