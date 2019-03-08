@@ -9,7 +9,7 @@ echo -e "TRAVIS_PULL_REQUEST=$TRAVIS_PULL_REQUEST"
 if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
     # Pull Request
     echo -e "Build Pull Request #$TRAVIS_PULL_REQUEST => Branch [$TRAVIS_BRANCH]"
-    ./mvnw
+    ./mvnw clean install
 elif [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "develop" ] && [ "$TRAVIS_TAG" == "" ]; then
     # Develop Branch
     echo -e 'Build Branch with Snapshot => Branch ['$TRAVIS_BRANCH']'
