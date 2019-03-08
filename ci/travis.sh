@@ -13,7 +13,6 @@ if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
 elif [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "develop" ] && [ "$TRAVIS_TAG" == "" ]; then
     # Develop Branch
     echo -e 'Build Branch with Snapshot => Branch ['$TRAVIS_BRANCH']'
-    export ORG_GRADLE_PROJECT_releaseType=snapshot
     ./mvnw clean install publish -Drevision-prefix=BUILD-SNAPSHOT
 elif [ "$TRAVIS_PULL_REQUEST" == "false" ] && [[ "$TRAVIS_BRANCH" == release/* ]] && [ "$TRAVIS_TAG" == "" ]; then
     # Release Branch
