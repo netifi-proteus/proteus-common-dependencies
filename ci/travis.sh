@@ -29,6 +29,5 @@ elif [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ]; then
 else
     # Feature Branch
     echo -e 'Build Branch => Branch ['$TRAVIS_BRANCH']'
-    export ORG_GRADLE_PROJECT_releaseType=snapshot
     ./mvnw clean install publish -Drevision-prefix=BUILD-SNAPSHOT
 fi
