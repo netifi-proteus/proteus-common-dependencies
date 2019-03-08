@@ -1,6 +1,7 @@
 language: java
 sudo: required
-jdk: oraclejdk8
+jdk: openjdk11
+install: "echo -e 'Starts Script Without Installation'"
 script: ci/travis.sh
 notifications:
   email: false
