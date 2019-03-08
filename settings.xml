@@ -11,12 +11,12 @@
     <server>
       <id>netifi-snapshot</id>
       <username>${env.NETIFI_ARTIFACTORY_USERNAME}</username>
-      <password>${env.NETIFI_ARTIFACTORY_ARTIFACTORY}</password>
+      <password>${env.NETIFI_ARTIFACTORY_PASSWORD}</password>
     </server>
     <server>
       <id>netifi-release</id>
       <username>${env.NETIFI_ARTIFACTORY_USERNAME}</username>
-      <password>${env.NETIFI_ARTIFACTORY_ARTIFACTORY}</password>
+      <password>${env.NETIFI_ARTIFACTORY_PASSWORD}</password>
     </server>
   </servers>
   <mirrors/>

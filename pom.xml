@@ -623,7 +623,7 @@
 							<publisher>
 								<contextUrl>https://artifactory.netifiinc.com/artifactory</contextUrl>
 								<username>${env.NETIFI_ARTIFACTORY_USERNAME}</username>
-								<password>${env.NETIFI_ARTIFACTORY_ARTIFACTORY}</password>
+								<password>${env.NETIFI_ARTIFACTORY_PASSWORD}</password>
 								<repoKey>libs-release-local</repoKey>
 								<snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
 							</publisher>
