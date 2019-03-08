@@ -21,7 +21,6 @@ elif [ "$TRAVIS_PULL_REQUEST" == "false" ] && [[ "$TRAVIS_BRANCH" == release/* ]
 elif [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
     # Master Branch
     echo -e 'Build Master for Release => Branch ['$TRAVIS_BRANCH']'
-    export ORG_GRADLE_PROJECT_releaseType=release
     ./mvnw clean install
 elif [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_TAG" != "" ]; then
     # Tag
