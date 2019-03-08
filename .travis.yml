@@ -1,6 +1,6 @@
 language: java
 sudo: required
-jdk: openjdk11
+jdk: oraclejdk8
 script: ci/travis.sh
 notifications:
   email: false
