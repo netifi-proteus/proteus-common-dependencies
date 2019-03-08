@@ -4,8 +4,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.netifi.proteus</groupId>
-	<version>Andromeda-BUILD-SNAPSHOT</version>
 	<artifactId>proteus-common-dependencies</artifactId>
+	<version>Andromeda-${revision-prefix}</version>
 	<packaging>pom</packaging>
 	<name>Proteus Common Dependencies</name>
 	<description>Proteus Common Dependencies</description>
@@ -28,6 +28,8 @@
 		</developer>
 	</developers>
 	<properties>
+		<revision-prefix>BUILD-SNAPSHOT</revision-prefix>
+
 		<!-- Dependency versions -->
 		<assertj.version>3.12.1</assertj.version>
 		<brave-opentracing.version>0.33.10</brave-opentracing.version>
@@ -59,6 +61,7 @@
 		<build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
 		<xml-maven-plugin.version>1.0.2</xml-maven-plugin.version>
 		<flatten-maven-plugin.version>1.1.0</flatten-maven-plugin.version>
+		<artifactory-maven-plugin.version>2.6.1</artifactory-maven-plugin.version>
 	</properties>
 
 	<repositories>
@@ -67,6 +70,29 @@
 		<repository>
 			<id>central</id>
 			<url>https://repo.maven.apache.org/maven2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>netifi-snapshot</id>
+			<url>https://artifactory.netifiinc.com/artifactory/libs-snapshot-local</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>netifi-release</id>
+			<url>https://artifactory.netifiinc.com/artifactory/libs-release-local</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+		  	<id>jcenter</id>
+		  	<url>https://jcenter.bintray.com/</url>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
@@ -100,6 +126,13 @@
 		<pluginRepository>
 			<id>central</id>
 			<url>https://repo.maven.apache.org/maven2</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+		  	<id>jcenter</id>
+		  	<url>https://jcenter.bintray.com/</url>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
@@ -435,6 +468,11 @@
 					<version>${flatten-maven-plugin.version}</version>
 				</plugin>
 				<plugin>
+					<groupId>org.jfrog.buildinfo</groupId>
+					<artifactId>artifactory-maven-plugin</artifactId>
+					<version>${artifactory-maven-plugin.version}</version>
+				</plugin>
+				<plugin>
 					<groupId>org.flywaydb</groupId>
 					<artifactId>flyway-maven-plugin</artifactId>
 					<version>${flyway.version}</version>
@@ -567,6 +605,28 @@
 									<type>effective-pom</type>
 								</artifact>
 							</artifacts>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.jfrog.buildinfo</groupId>
+				<artifactId>artifactory-maven-plugin</artifactId>
+				<inherited>false</inherited>
+				<executions>
+					<execution>
+						<id>build-info</id>
+						<goals>
+							<goal>publish</goal>
+						</goals>
+						<configuration>
+							<publisher>
+								<contextUrl>https://artifactory.netifiinc.com/artifactory</contextUrl>
+								<username>${env.NETIFI_ARTIFACTORY_USERNAME}</username>
+								<password>${env.NETIFI_ARTIFACTORY_ARTIFACTORY}</password>
+								<repoKey>libs-release-local</repoKey>
+								<snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
+							</publisher>
 						</configuration>
 					</execution>
 				</executions>
