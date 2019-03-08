@@ -32,5 +32,5 @@ else
     # Feature Branch
     echo -e 'Build Branch => Branch ['$TRAVIS_BRANCH']'
     export ORG_GRADLE_PROJECT_releaseType=snapshot
-    ./mvnw
+    ./mvnw clean install publish -Drevision-prefix=BUILD-SNAPSHOT
 fi
