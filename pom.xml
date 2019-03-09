@@ -53,6 +53,7 @@
 		<netty-tcnative.version>2.0.22.Final</netty-tcnative.version>
 		<opentracing.version>0.31.0</opentracing.version>
 		<postgresql.version>42.2.5</postgresql.version>
+		<protobuf.version>3.6.1</protobuf.version>
 		<reactor-bom.version>Californium-SR5</reactor-bom.version>
 		<rsocket-bom.version>Palladium-BUILD-SNAPSHOT</rsocket-bom.version>
 		<spectator.version>0.87.0</spectator.version>
@@ -409,6 +410,14 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+
+			<dependency>
+				<groupId>com.google.protobuf</groupId>
+				<artifactId>protobuf-bom</artifactId>
+				<version>${protobuf.version}</version>
+				<type>pom</type>
+			</dependency>
+
 			<dependency>
 				<groupId>com.fasterxml.jackson</groupId>
 				<artifactId>jackson-bom</artifactId>
@@ -416,6 +425,7 @@
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
+
 			<dependency>
 				<groupId>io.netty</groupId>
 				<artifactId>netty-bom</artifactId>
@@ -433,6 +443,7 @@
 				<artifactId>netty-tcnative</artifactId>
 				<version>${netty-tcnative.version}</version>
 			</dependency>
+
 			<dependency>
 				<groupId>io.projectreactor</groupId>
 				<artifactId>reactor-bom</artifactId>
@@ -440,6 +451,7 @@
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
+
 			<dependency>
 				<groupId>io.rsocket</groupId>
 				<artifactId>rsocket-bom</artifactId>
