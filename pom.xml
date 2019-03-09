@@ -411,14 +411,16 @@
 				<scope>import</scope>
 			</dependency>
 
-			<dependency>
-				<groupId>com.google.protobuf</groupId>
-				<artifactId>protobuf-bom</artifactId>
-				<version>${protobuf.version}</version>
-				<scope>import</scope>
-				<type>pom</type>
-			</dependency>
-
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java</artifactId>
+                <version>${protobuf.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.protobuf</groupId>
+                <artifactId>protobuf-java-util</artifactId>
+                <version>${protobuf.version}</version>
+            </dependency>
 			<dependency>
 				<groupId>com.google.protobuf</groupId>
 				<artifactId>protoc</artifactId>
