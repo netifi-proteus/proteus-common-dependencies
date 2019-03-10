@@ -57,6 +57,7 @@
 		<reactor-bom.version>Californium-SR5</reactor-bom.version>
 		<rsocket-bom.version>Palladium-BUILD-SNAPSHOT</rsocket-bom.version>
 		<spectator.version>0.87.0</spectator.version>
+		<typesafe-config.version>1.3.3</typesafe-config.version>
 		<zipkin-sender.version>2.8.0</zipkin-sender.version>
 		<!-- Plugin versions -->
 		<build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
@@ -299,6 +300,12 @@
 			</dependency>
 
 			<dependency>
+				<groupId>com.typesafe</groupId>
+				<artifactId>config</artifactId>
+				<version>${typesafe-config.version}</version>
+			</dependency>
+
+			<dependency>
 				<groupId>io.micrometer</groupId>
 				<artifactId>micrometer-core</artifactId>
 				<version>${micrometer.version}</version>
@@ -465,8 +472,8 @@
 				<groupId>io.rsocket</groupId>
 				<artifactId>rsocket-bom</artifactId>
 				<version>${rsocket-bom.version}</version>
-				<type>pom</type>
 				<scope>import</scope>
+				<type>pom</type>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
