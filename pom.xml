@@ -34,6 +34,7 @@
 		<assertj.version>3.12.1</assertj.version>
 		<brave-opentracing.version>0.33.10</brave-opentracing.version>
 		<commons-validator.version>1.6</commons-validator.version>
+		<commons-io.version>2.6</commons-io.version>
 		<flyway.version>5.2.4</flyway.version>
 		<guava.version>27.0.1-jre</guava.version>
 		<h2.version>1.4.198</h2.version>
@@ -272,6 +273,11 @@
 				<groupId>commons-validator</groupId>
 				<artifactId>commons-validator</artifactId>
 				<version>${commons-validator.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons-io.version}</version>
 			</dependency>
 
 			<dependency>
