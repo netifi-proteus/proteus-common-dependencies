@@ -14,7 +14,7 @@ elif [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "develop" ] 
     # Develop Branch
     echo -e 'Build Branch with Snapshot => Branch ['$TRAVIS_BRANCH']'
     ./mvnw -s ./settings.xml clean install deploy -Drevision-prefix=BUILD-SNAPSHOT
-elif [ "$TRAVIS_PULL_REQUEST" == "false" ] && [[ "$TRAVIS_BRANCH" == release/* ]] && [ "$TRAVIS_TAG" == "" ]; then
+elif [ "$TRAVIS_PULL_REQUEST" == "false" ] && [[ "$TRAVIS_BRANCH" =~ release/* ]] && [ "$TRAVIS_TAG" == "" ]; then
     # Release Branch
     echo -e 'Build Branch for Release => Branch ['$TRAVIS_BRANCH']'
     ./mvnw -s ./settings.xml clean install deploy -Drevision-prefix=RC
