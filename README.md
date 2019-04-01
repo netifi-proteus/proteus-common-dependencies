@@ -11,7 +11,7 @@ In Maven, you need to import the bom first:
         <dependency>
             <groupId>io.netifi.proteus</groupId>
             <artifactId>proteus-common-dependencies</artifactId>
-            <version>Andromeda-BUILD-SNAPSHOT</version>
+            <version>1.6.0-BUILD-SNAPSHOT</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
