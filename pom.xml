@@ -28,7 +28,7 @@
 		</developer>
 	</developers>
 	<properties>
-		<revision-prefix>RELEASE</revision-prefix>
+		<revision-prefix>BUILD-SNAPSHOT</revision-prefix>
 
 		<!-- Dependency versions -->
 		<assertj.version>3.12.1</assertj.version>
