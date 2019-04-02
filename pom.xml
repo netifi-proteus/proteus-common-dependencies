@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.netifi.proteus</groupId>
 	<artifactId>proteus-common-dependencies</artifactId>
-	<version>1.6.0-${revision-prefix}</version>
+	<version>1.6.0${revision-prefix}</version>
 	<packaging>pom</packaging>
 	<name>Proteus Common Dependencies</name>
 	<description>Proteus Common Dependencies</description>
@@ -28,7 +28,7 @@
 		</developer>
 	</developers>
 	<properties>
-		<revision-prefix>BUILD-SNAPSHOT</revision-prefix>
+		<revision-prefix>-SNAPSHOT</revision-prefix>
 
 		<!-- Dependency versions -->
 		<assertj.version>3.12.1</assertj.version>
@@ -512,7 +512,8 @@
 	<distributionManagement>
 		<repository>
 			<id>bintray-netifi-oss</id>
-			<url>https://api.bintray.com/maven/netifi/netifi-oss/proteus-common-dependencies;publish=1</url>
+			<name>netifi-oss</name>
+			<url>https://api.bintray.com/maven/netifi/netifi-oss/proteus-common-dependencies/;publish=1</url>
 		</repository>
 	</distributionManagement>
 
