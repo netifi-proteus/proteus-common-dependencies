@@ -10,18 +10,18 @@
   <servers>
     <server>
       <id>netifi-snapshot</id>
-      <username>${env.NETIFI_ARTIFACTORY_USERNAME}</username>
-      <password>${env.NETIFI_ARTIFACTORY_PASSWORD}</password>
+      <username>${env.ORG_GRADLE_PROJECT_netifiArtifactoryUsername}</username>
+      <password>${env.ORG_GRADLE_PROJECT_netifiArtifactoryPassword}</password>
     </server>
     <server>
       <id>netifi-release</id>
-      <username>${env.NETIFI_ARTIFACTORY_USERNAME}</username>
-      <password>${env.NETIFI_ARTIFACTORY_PASSWORD}</password>
+      <username>${env.ORG_GRADLE_PROJECT_netifiArtifactoryUsername}</username>
+      <password>${env.ORG_GRADLE_PROJECT_netifiArtifactoryPassword}</password>
     </server>
     <server>
       <id>bintray-netifi-oss</id>
-      <username>${env.NETIFI_BINTRAY_USER}</username>
-      <password>${env.NETIFI_BINTRAY_PASSWORD}</password>
+      <username>${env.ORG_GRADLE_PROJECT_bintrayUser}</username>
+      <password>${env.ORG_GRADLE_PROJECT_bintrayKey}</password>
     </server>
   </servers>
   <mirrors/>
