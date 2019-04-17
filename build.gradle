@@ -1,0 +1,255 @@
+/*
+ * Copyright 2015-2019 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+buildscript {
+    repositories {
+        maven {
+            url 'https://sonatype.netifiinc.com/repository/netifi-plugin-group/'
+            credentials {
+                username = "${netifiReadOnlyUsername}"
+                password = "${netifiReadOnlyPassword}"
+            }
+        }
+    }
+    dependencies {
+        classpath 'io.spring.gradle:dependency-management-plugin:1.0.7.RELEASE'
+        classpath 'tane.mahuta.build:gradle-plugin-version:2.0.3'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+        classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.9.5'
+    }
+}
+
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'tane.mahuta.gradle.semver-branch-plugin'
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.jfrog.artifactory'
+
+repositories {
+    maven {
+        url 'https://sonatype.netifiinc.com/repository/maven-central/'
+        credentials {
+            username = "${netifiReadOnlyUsername}"
+            password = "${netifiReadOnlyPassword}"
+        }
+    }
+    maven {
+        url 'https://sonatype.netifiinc.com/repository/jcenter/'
+        credentials {
+            username = "${netifiReadOnlyUsername}"
+            password = "${netifiReadOnlyPassword}"
+        }
+    }
+    maven {
+        url 'https://sonatype.netifiinc.com/repository/spring-release/'
+        credentials {
+            username = "${netifiReadOnlyUsername}"
+            password = "${netifiReadOnlyPassword}"
+        }
+    }
+    maven {
+        url 'https://sonatype.netifiinc.com/repository/spring-milestone/'
+        credentials {
+            username = "${netifiReadOnlyUsername}"
+            password = "${netifiReadOnlyPassword}"
+        }
+    }
+    maven {
+        url 'https://sonatype.netifiinc.com/repository/sonatype-oss-releases/'
+        credentials {
+            username = "${netifiReadOnlyUsername}"
+            password = "${netifiReadOnlyPassword}"
+        }
+    }
+    maven {
+        url 'https://sonatype.netifiinc.com/repository/netifi-artifactory-libs-snapshot-local/'
+        credentials {
+            username = "${netifiReadOnlyUsername}"
+            password = "${netifiReadOnlyPassword}"
+        }
+    }
+    maven {
+        url 'https://sonatype.netifiinc.com/repository/netifi-artifactory-libs-release-local/'
+        credentials {
+            username = "${netifiReadOnlyUsername}"
+            password = "${netifiReadOnlyPassword}"
+        }
+    }
+    maven {
+        url 'https://sonatype.netifiinc.com/repository/netifi-oss/'
+        credentials {
+            username = "${netifiReadOnlyUsername}"
+            password = "${netifiReadOnlyPassword}"
+        }
+    }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "com.fasterxml.jackson:jackson-bom:${jacksonVersion}"
+        mavenBom "io.netifi.proteus:proteus-rsocket-bom:${rsocketBomVersion}"
+        mavenBom "io.netty:netty-bom:${nettyVersion}"
+        mavenBom "io.projectreactor:reactor-bom:${reactorBomVersion}"
+        mavenBom "org.apache.logging.log4j:log4j-bom:${log4j2Version}"
+        mavenBom "org.junit:junit-bom:${junitJupiterVersion}"
+    }
+    dependencies {
+        dependency "com.github.davidmoten:rxjava2-jdbc:${rxjava2JdbcVersion}"
+        dependency "com.google.guava:guava:${guavaVersion}"
+        dependency "com.google.protobuf:protobuf-java-util:${protobufVersion}"
+        dependency "com.google.protobuf:protobuf-java:${protobufVersion}"
+        dependency "com.google.protobuf:protoc:${protobufVersion}"
+        dependency "com.h2database:h2-mvstore:${h2Version}"
+        dependency "com.h2database:h2:${h2Version}"
+        dependency "com.hubspot.jackson:jackson-datatype-protobuf:${jacksonProtobufVersion}"
+        dependency "com.lmax:disruptor:${lmaxVersion}"
+        dependency "com.netflix.spectator:spectator-api:${spectatorVersion}"
+        dependency "com.netflix.spectator:spectator-ext-ipc:${spectatorVersion}"
+        dependency "com.netflix.spectator:spectator-reg-atlas:${spectatorVersion}"
+        dependency "com.typesafe:config:${typesafeConfigVersion}"
+        dependency "commons-io:commons-io:${commonsIoVersion}"
+        dependency "commons-validator:commons-validator:${commonsValidatorVersion}"
+        dependency "io.micrometer:micrometer-core:${micrometerVersion}"
+        dependency "io.micrometer:micrometer-jersey2:${micrometerVersion}"
+        dependency "io.micrometer:micrometer-registry-appoptics:${micrometerVersion}"
+        dependency "io.micrometer:micrometer-registry-atlas:${micrometerVersion}"
+        dependency "io.micrometer:micrometer-registry-azure-monitor:${micrometerVersion}"
+        dependency "io.micrometer:micrometer-registry-cloudwatch:${micrometerVersion}"
+        dependency "io.micrometer:micrometer-registry-datadog:${micrometerVersion}"
+        dependency "io.micrometer:micrometer-registry-dynatrace:${micrometerVersion}"
+        dependency "io.micrometer:micrometer-registry-elastic:${micrometerVersion}"
+        dependency "io.micrometer:micrometer-registry-ganglia:${micrometerVersion}"
+        dependency "io.micrometer:micrometer-registry-graphite:${micrometerVersion}"
+        dependency "io.micrometer:micrometer-registry-humio:${micrometerVersion}"
+        dependency "io.micrometer:micrometer-registry-influx:${micrometerVersion}"
+        dependency "io.micrometer:micrometer-registry-jmx:${micrometerVersion}"
+        dependency "io.micrometer:micrometer-registry-kairos:${micrometerVersion}"
+        dependency "io.micrometer:micrometer-registry-new-relic:${micrometerVersion}"
+        dependency "io.micrometer:micrometer-registry-prometheus:${micrometerVersion}"
+        dependency "io.micrometer:micrometer-registry-signalfx:${micrometerVersion}"
+        dependency "io.micrometer:micrometer-registry-statsd:${micrometerVersion}"
+        dependency "io.micrometer:micrometer-registry-wavefront:${micrometerVersion}"
+        dependency "io.micrometer:micrometer-test:${micrometerVersion}"
+        dependency "io.netty:netty-tcnative-boringssl-static:${nettyTcnativeVersion}"
+        dependency "io.netty:netty-tcnative:${nettyTcnativeVersion}"
+        dependency "io.opentracing:opentracing-api:${opentracingVersion}"
+        dependency "io.opentracing.brave:brave-opentracing:${braveOpentracingVersion}"
+        dependency "io.zipkin.reporter2:zipkin-sender-okhttp3:${zipkinSenderVersion}"
+        dependency "javax.annotation:javax.annotation-api:${javaxAnnotationVersion}"
+        dependency "javax.inject:javax.inject:${javaxInjectVersion}"
+        dependency "junit:junit:${junitVersion}"
+        dependency "org.assertj:assertj-core:${assertjVersion}"
+        dependency "org.flywaydb:flyway-core:${flywayVersion}"
+        dependency "org.hamcrest:hamcrest-core:${hamcrestVersion}"
+        dependency "org.hamcrest:hamcrest-library:${hamcrestVersion}"
+        dependency "org.hdrhistogram:HdrHistogram:${hdrhistogramVersion}"
+        dependency "org.jctools:jctools-core:${jctoolsVersion}"
+        dependency "org.mockito:mockito-core:${mockitoVersion}"
+        dependency "org.mockito:mockito-inline:${mockitoVersion}"
+        dependency "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
+        dependency "org.postgresql:postgresql:${postgresqlVersion}"
+        dependency "org.roaringbitmap:RoaringBitmap:${roaringbitmapVersion}"
+    }
+}
+
+publishing {
+    publications {
+        mavenBom(MavenPublication) {
+            pom {
+                name = 'Netifi Common Dependencies BOM'
+                description = 'A bill of materials for all Netifi applications'
+                url = 'https://www.netifi.com'
+
+                organization {
+                    name = 'Netifi, Inc.'
+                    url = 'https://www.netifi.com'
+                }
+
+                licenses {
+                    license {
+                        name = 'The Apache Software License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution = 'repo'
+                    }
+                }
+
+                scm {
+                    url = 'https://github.com/netifi-proteus/proteus-common-dependencies'
+                    connection = 'scm:git:git://github.com/netifi-proteus/proteus-common-dependencies'
+                    developerConnection = 'scm:git:git://github.com/netifi-proteus/proteus-common-dependencies'
+                }
+
+                issueManagement {
+                    system = "GitHub Issues"
+                    url = "https://github.com/netifi-proteus/proteus-common-dependencies/issues"
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url 'https://sonatype.netifiinc.com/repository/netifi-maven-snapshots/'
+            credentials {
+                username = "${netifiPublishUsername}"
+                password = "${netifiPublishPassword}"
+            }
+        }
+    }
+}
+
+task clean {
+    delete rootProject.buildDir
+}
+
+artifactory {
+    publish {
+        contextUrl = 'https://artifactory.netifiinc.com/artifactory'
+
+        repository {
+            repoKey = version.qualifier == 'SNAPSHOT' ? 'libs-snapshot-local' : 'libs-release-local'
+            username = "${netifiArtifactoryUsername}"
+            password = "${netifiArtifactoryPassword}"
+        }
+
+        defaults {
+            publications('mavenBom')
+        }
+    }
+}
+
+bintray {
+    user = "${bintrayUser}"
+    key = "${bintrayKey}"
+
+    publications = ['mavenBom']
+    override = true
+
+    pkg {
+        repo = 'netifi-oss'
+        name = project.name
+        userOrg = 'netifi'
+        desc = 'A bill of materials for all Netifi applications'
+        websiteUrl = 'https://github.com/netifi-proteus/proteus-common-dependencies'
+        issueTrackerUrl = 'https://github.com/netifi-proteus/proteus-common-dependencies/issues'
+        vcsUrl = 'https://github.com/netifi-proteus/proteus-common-dependencies.git'
+        licenses = ['Apache-2.0']
+        githubRepo = 'netifi-proteus/proteus-common-dependencies'
+        githubReleaseNotesFile = 'CHANGELOG.md'
+
+        version {
+            name = "$project.version".toString()
+        }
+    }
+}

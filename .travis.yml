@@ -1,10 +1,19 @@
 language: java
 sudo: required
-jdk: openjdk11
-install: "echo -e 'Starts Script Without Installation'"
+jdk: oraclejdk8
+install:
+  - git checkout ${TRAVIS_BRANCH}
+  - git branch -u origin/${TRAVIS_BRANCH}
+  - git config branch.${TRAVIS_BRANCH}.remote origin
+  - git config branch.${TRAVIS_BRANCH}.merge refs/heads/${TRAVIS_BRANCH}
+  - git symbolic-ref HEAD
 script: ci/travis.sh
+before_cache:
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 notifications:
   email: false
 cache:
   directories:
+    - "$HOME/.gradle/caches/"
+    - "$HOME/.gradle/wrapper/"
     - "$HOME/.m2"
