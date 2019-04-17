@@ -1,6 +1,7 @@
 language: java
 sudo: required
 jdk: oraclejdk8
+install: "echo -e 'Starts Script Without Installation'"
 git:
   depth: false
 script: ci/travis.sh
