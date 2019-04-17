@@ -51,8 +51,8 @@
 		<log4j2.version>2.11.2</log4j2.version>
 		<micrometer.version>1.0.6</micrometer.version>
 		<mockito.version>2.25.0</mockito.version>
-		<netty.version>4.1.33.Final</netty.version>
-		<netty-tcnative.version>2.0.22.Final</netty-tcnative.version>
+		<netty.version>4.1.31.Final</netty.version>
+		<netty-tcnative.version>2.0.18.Final</netty-tcnative.version>
 		<opentracing.version>0.31.0</opentracing.version>
 		<postgresql.version>42.2.5</postgresql.version>
 		<protobuf.version>3.6.1</protobuf.version>
