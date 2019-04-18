@@ -2,16 +2,18 @@ language: java
 sudo: required
 jdk: oraclejdk8
 install:
-  - git checkout ${TRAVIS_BRANCH}
-  - git branch -u origin/${TRAVIS_BRANCH}
-  - git config branch.${TRAVIS_BRANCH}.remote origin
-  - git config branch.${TRAVIS_BRANCH}.merge refs/heads/${TRAVIS_BRANCH}
-  - git symbolic-ref HEAD
+- git checkout ${TRAVIS_BRANCH}
+- git branch -u origin/${TRAVIS_BRANCH}
+- git config branch.${TRAVIS_BRANCH}.remote origin
+- git config branch.${TRAVIS_BRANCH}.merge refs/heads/${TRAVIS_BRANCH}
+- git symbolic-ref HEAD
 script: ci/travis.sh
 before_cache:
 - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 notifications:
   email: false
+  slack:
+    secure: dThfsQoyJlheI1mUrKeb4y+RVJdV8Ie9J5oid4fhp9YUlNBWVk0jaR53Y6VtfWfkieDpImlhdlef4Wh4IVxzE3CbkRaos6e1fshjxjpYEKd/zIQqUGtRfCXCpUuy4fWs7yqBxLzpgKowsfTXoKU+bwjLcZkRs98rsn8Vai5iZFBudC1RORUpbZCeTvxc5uerDQsWA9O+JkQHug1KRLKksQbnEljYMIipQrFTdbH8toa4tpRjkFbcleRehfNfYJ9gShnJD4EsybOlbYYDC8q5BD3fEKN/j1h0SxCXv2nt67L/VaOJK3rHITHyRahoBqXFijonbTr1MxT2uQrPYel9OFMw88ReWTnr3fyMzoRRRhrFqjCTUjM4Hnd5YKZ83sFLZyc6E6qZaeF7A6/iA8LR03mptwXg8BDpmgHqtnsBaYEJAwcyc/qs4uN+NxcJzJBRTmfW5hKqw1LEPOjjEq0H5a3ooYrvuhnd4j58d33u7K1jumNQnX+I7Wm0rgkwU9utj/xzzVVy8Vnq6Q1ja/Zj5bRxXE91R3kfviGd/MW3bWTg0WjfxVlh+CsZJWZdsMftUr1t8v+3OAN3zRxZ8f9M83uQmgDE3k85Rw98E+Iz9I3VNsOwP/FaTwJ8zoylhc6qgIbzDy90mOCdfEDObj5sBDuVVir1l1a7C1lEv/N/m0M=
 cache:
   directories:
   - "$HOME/.gradle/caches/"
